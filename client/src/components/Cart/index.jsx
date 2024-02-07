@@ -19,7 +19,6 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
   const cart = useSelector(selectCart);
-  console.log(cart);
   const cartOpen = useSelector(selectCartOpen);
   const dispatch = useDispatch();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);

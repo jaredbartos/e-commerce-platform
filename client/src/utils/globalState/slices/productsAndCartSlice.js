@@ -30,15 +30,20 @@ const productsAndCartSlice = createSlice({
       };
     },
     updateCartQuantity: (state, action) => {
+      const updatedCart = state.cart.map((product) => {
+        if (action.payload._id === product._id) {
+          return {
+            ...product,
+            purchaseQuantity: action.payload.purchaseQuantity
+          };
+        }
+        return product;
+      });
+      
       return {
         ...state,
         cartOpen: true,
-        cart: state.cart.map((product) => {
-          if (action.payload._id === product._id) {
-            product.purchaseQuantity = action.payload.purchaseQuantity;
-          }
-          return product;
-        })
+        cart: updatedCart
       };
     },
     removeFromCart: (state, action) => {
