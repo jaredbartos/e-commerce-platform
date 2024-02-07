@@ -10,21 +10,27 @@ const productsAndCartSlice = createSlice({
   name: 'productsAndCart',
   initialState,
   reducers: {
-    updateProducts: (state, action) => 
-      state = { ...state, products: action.payload.products },
-    addToCart: (state, action) =>
-      state = {
+    updateProducts: (state, action) => {
+      return {
+        ...state,
+        products: action.payload.products
+      };
+    },
+    addToCart: (state, action) => {
+      return {
         ...state,
         cartOpen: true,
         cart: [...state.cart, action.payload.product]
-      },
-    addMultipleToCart: (state, action) =>
-      state = {
+      };
+    },
+    addMultipleToCart: (state, action) => {
+      return {
         ...state,
         cart: [...state.cart, ...action.payload.products]
-      },
-    updateCartQuantity: (state, action) =>
-      state = {
+      };
+    },
+    updateCartQuantity: (state, action) => {
+      return {
         ...state,
         cartOpen: true,
         cart: state.cart.map((product) => {
@@ -33,20 +39,32 @@ const productsAndCartSlice = createSlice({
           }
           return product;
         })
+      };
     },
     removeFromCart: (state, action) => {
       let newState = state.cart.filter((product) => {
         return product._id !== action.payload._id;
       });
 
-      state = {
+      return {
         ...state,
         cartOpen: newState.length > 0,
         cart: newState
       };
     },
-    clearCart: state => state = { ...state, cartOpen: false, cart: [] },
-    toggleCart: state => state = { ...state, cartOpen: !state.cartOpen }
+    clearCart: state => {
+      return {
+        ...state,
+        cartOpen: false,
+        cart: []
+      };
+    },
+    toggleCart: state => {
+      return {
+        ...state,
+        cartOpen: !state.cartOpen
+      };
+    }
   }
 });
 

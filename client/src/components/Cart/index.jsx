@@ -19,6 +19,7 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
   const cart = useSelector(selectCart);
+  console.log(cart);
   const cartOpen = useSelector(selectCartOpen);
   const dispatch = useDispatch();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
@@ -43,7 +44,7 @@ const Cart = () => {
   }, [cart.length, dispatch]);
 
   function toggleCartHandler() {
-    dispatch(toggleCart);
+    dispatch(toggleCart());
   }
 
   function calculateTotal() {
@@ -70,7 +71,7 @@ const Cart = () => {
 
   if (!cartOpen) {
     return (
-      <div className="cart-closed" onClick={toggleCart}>
+      <div className="cart-closed" onClick={toggleCartHandler}>
         <span role="img" aria-label="trash">
           🛒
         </span>
