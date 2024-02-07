@@ -8,7 +8,9 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Nav from './components/Nav';
-import { StoreProvider } from './utils/GlobalState';
+
+import store from './utils/globalState/store';
+import { Provider } from 'react-redux';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -32,10 +34,10 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <StoreProvider>
+      <Provider store={store}>
         <Nav />
         <Outlet />
-      </StoreProvider>
+      </Provider>
     </ApolloProvider>
   );
 }
