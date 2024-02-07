@@ -50,6 +50,10 @@ const productsAndCartSlice = createSlice({
   }
 });
 
+export const selectCart = state => state.productsAndCart.cart;
+export const selectCartOpen = state => state.productsAndCart.cartOpen;
+export const selectProducts = state => state.productsAndCart.products;
+
 export const {
   updateProducts,
   addToCart,
