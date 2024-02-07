@@ -4,29 +4,26 @@ const initialState = {
   products: [],
   cart: [],
   cartOpen: false
-}
+};
 
-export const productsAndCartSlice = createSlice({
+const productsAndCartSlice = createSlice({
   name: 'productsAndCart',
   initialState,
   reducers: {
-    updateProducts: (state, action) => {
-      state = { ...state, products: action.payload.products };
-    },
-    addToCart: (state, action) => {
+    updateProducts: (state, action) => 
+      state = { ...state, products: action.payload.products },
+    addToCart: (state, action) =>
       state = {
         ...state,
         cartOpen: true,
         cart: [...state.cart, action.payload.product]
-      };
-    },
-    addMultipleToCart: (state, action) => {
+      },
+    addMultipleToCart: (state, action) =>
       state = {
         ...state,
         cart: [...state.cart, ...action.payload.products]
-      };
-    },
-    updateCartQuantity: (state, action) => {
+      },
+    updateCartQuantity: (state, action) =>
       state = {
         ...state,
         cartOpen: true,
@@ -36,7 +33,6 @@ export const productsAndCartSlice = createSlice({
           }
           return product;
         })
-      };
     },
     removeFromCart: (state, action) => {
       let newState = state.cart.filter((product) => {
